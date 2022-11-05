@@ -1,0 +1,28 @@
+*Create a makeup store database*
+CREATE TABLE makeup (id INTEGER PRIMARY KEY, name TEXT, sold INTEGER, price INTEGER, popular TEXT);
+
+INSERT INTO makeup VALUES (1, "Primer", 234, 15, "Med");
+INSERT INTO makeup VALUES (2, "Foundation", 276, 30, "High");
+INSERT INTO makeup VALUES (3, "Powder", 268, 20, "Med");
+INSERT INTO makeup VALUES (4, "Loose Setting Powder", 358, 25, "High");
+INSERT INTO makeup VALUES (5, "Bronzer", 348, 27, "High");
+INSERT INTO makeup VALUES (6, "Cream Bronzer", 397, 30, "High");
+INSERT INTO makeup VALUES (7, "Blush", 348, 20, "High");
+INSERT INTO makeup VALUES (8, "Cream BLush", 398, 27, "High");
+INSERT INTO makeup VALUES (9, "Highlighter", 283, 21, "Low");
+INSERT INTO makeup VALUES (10, "Eyeliner", 313, 22, "Med");
+INSERT INTO makeup VALUES (11, "Mascara", 302, 18, "Med");
+INSERT INTO makeup VALUES (12, "Brow Gel", 289, 15, "High");
+INSERT INTO makeup VALUES (13, "Eyebrow Pen", 297, 23, "High");
+INSERT INTO makeup VALUES (14, "Setting Spray", 322, 30, "High");
+INSERT INTO makeup VALUES (15, "Bronze Eyeshadow Palette", 266, 35, "Med");
+
+
+*Display the database ordered by price*
+SELECT * FROM makeup ORDER BY price;
+
+*Display the items that are priced over $25 in ascending order*
+SELECT * FROM MAKEUP WHERE price > 25 ORDER BY price;
+
+*What is the highest priced item?*
+SELECT MAX(price) FROM makeup;
