@@ -1,0 +1,61 @@
+/*Create separate tables about celebrities, their occupation and their friends*/
+CREATE TABLE celebrities (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);
+
+INSERT INTO celebrities (id, name, age) VALUES (1, "Margot Robbie", 32);
+INSERT INTO celebrities (id, name, age) VALUES (2, "Dua Lipa", 27);
+INSERT INTO celebrities (id, name, age) VALUES (3, "Harry Styles", 28);
+INSERT INTO celebrities (id, name, age) VALUES (4, "Ian Somerhalder", 43);
+INSERT INTO celebrities (id, name, age) VALUES (5, "Blake Lively", 35);
+INSERT INTO celebrities (id, name, age) VALUES (6, "Ryan Reynolds", 46);
+INSERT INTO celebrities (id, name, age) VALUES (7, "Devon Booker", 26);
+INSERT INTO celebrities (id, name, age) VALUES (8, "Kendall Jenner", 27);
+INSERT INTO celebrities (id, name, age) VALUES (9, "Michelle Kwan", 42);
+INSERT INTO celebrities (id, name, age) VALUES (10, "Serena Williams", 41);
+INSERT INTO celebrities (id, name, age) VALUES (11, "Nikki Glaser", 38);
+INSERT INTO celebrities (id, name, age) VALUES (12, "Kylie Jenner", 25);
+
+CREATE TABLE occupation (id INTEGER PRIMARY KEY, person_id INTEGER, occupation TEXT, hobby TEXT);
+
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (1, 1, "Actor/ Actress", "Painting"); 
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (2, 2, "Artist", "Dancing"); 
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (3, 3, "Artist", "Fishing");
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (4, 4, "Actor/ Actress", "Fishing"); 
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (5, 5, "Actor/ Actress", "Painting"); 
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (6, 6, "Actor/ Actress", "Fishing");
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (7, 7, "Athlete", "Dancing");
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (8, 8, "Model", "Painting");
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (9, 9, "Athlete", "Painting");
+INSERT INTO occupation (id, person_id, occupation, hobby) VALUES (10, 10, "Athlete", "Dancing");
+
+CREATE table friends (id INTEGER PRIMARY KEY AUTOINCREMENT, person1_id INTEGER, person2_id INTEGER);
+
+INSERT INTO friends (person1_id, person2_id) VALUES (1, 4);
+INSERT INTO friends (person1_id, person2_id) VALUES (2, 3);
+
+
+/*Select both tables with a join so you can see each celebrities name next to their occupation*/
+SELECT celebrities.name, occupation.occupation
+FROM celebrities
+JOIN occupation
+ON celebrities.id = occupation.person_id;
+
+/*Now add additional query with 'WHERE' that shows only the actor/ actresses*/
+SELECT celebrities.name, occupation.occupation
+FROM celebrities
+JOIN occupation
+ON celebrities.id = occupation.person_id
+WHERE occupation.occupation = "Actor/ Actress"; 
+
+/*Create query that lists all celebrities with their occupation and hobbies. Use LEFT OUTER JOIN so that every celebrity is listed even if they have no other known information*/
+SELECT c.name, c.age, o.occupation, o.hobby
+FROM celebrities c
+LEFT OUTER JOIN occupation o
+ON c.id = o.person_id;
+
+/*Create a SELECT with a JOIN that shows who are friends based on the friends table*/
+SELECT a.name, b.name
+FROM friends
+JOIN celebrities a 
+ON a.id = friends.person1_id
+JOIN celebrities b
+ON b.id = friends.person2_id;
